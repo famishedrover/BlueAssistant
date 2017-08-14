@@ -19,6 +19,18 @@ def open_browser(link):
 
 	print webbrowser.open(link)
 
+def open_application(text):
+	h = '/Applications/'
+
+	code = os.system("open %s%s"%(h,text))
+	if code !=0 :
+		code = os.system("open %s%s"%(h,text+'.app'))
+
+	if code!=0 :
+		return 'Not Found.'
+	if code == 0:
+		return 'Done!'
+
 
 def open_folder(text,home=None) :
 	if home is None :

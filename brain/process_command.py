@@ -1,4 +1,4 @@
-from open_apps import open_browser,open_folder
+from open_apps import open_browser,open_folder,open_application
 import webbrowser
 import time
 from automation.fblogin import fblogin
@@ -29,6 +29,12 @@ def parse_open(text):
 	if 'folder' in text :
 		text = text_process('folder',text)
 		answer = open_folder(text)
+		return answer
+		
+	if 'application' in text or 'app' in text :
+		text = text_process('application',text)
+		text = text_process('app',text)
+		answer = open_application(text)
 		return answer
 	else :
 		open_browser(text)
