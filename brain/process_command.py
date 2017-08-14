@@ -1,11 +1,12 @@
 from open_apps import open_browser
 import webbrowser
 import time
+from automation.fblogin import fblogin
 
 def find_any_text(ltext ,text):
 	assert type(ltext) == type ([1,2])
 	for lx in ltext :
-		if lx in text :
+		if lx.lower() in text.lower() :
 			return True 
 	return False
 
@@ -37,6 +38,14 @@ def parse_google(text) :
 	webbrowser.open(link+text)
 	return 'Done!'
 
+def parse_login(text) :
+	text = text_process('login',text)
+
+	if find_any_text(['facebook','fb'],text) :
+		fblogin()
+
+	return 'Done'
+
 
 def process_command(text , replycall = None):
 	textlower = text.lower()
@@ -47,6 +56,12 @@ def process_command(text , replycall = None):
 	if 'google' in textlower :
 		ans = parse_google(text) 
 		return ans
+	if 'login' in textlower :
+		ans = parse_login(text)
+		if ans is not None :
+			return ans
+		else :
+			return ''
 
 	if 'wait for' in text :
 		pass
