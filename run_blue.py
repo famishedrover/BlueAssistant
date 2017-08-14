@@ -16,7 +16,7 @@ sys.stdout.write('\r\a')
 
 max_iter = 20
 cont = True
-beep = True
+beep = False
 say("Let's Begin!")
 while(cont is True or max_iter > 0) :
 	max_iter -=1 
@@ -34,6 +34,7 @@ while(cont is True or max_iter > 0) :
 
 	if 'exit' in command.lower() or 'stop listening' in command.lower():
 		cont = False 
+		say('Bye!')
 		break
 
 	answer = process_command(command)

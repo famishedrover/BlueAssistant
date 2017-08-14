@@ -1,4 +1,4 @@
-from open_apps import open_browser
+from open_apps import open_browser,open_folder
 import webbrowser
 import time
 from automation.fblogin import fblogin
@@ -26,6 +26,10 @@ def parse_open(text):
 	text = text_process('open',text)
 	if find_any_text(['chrome','browser','safari'],text) :
 		return 'Speak website name:website_link'
+	if 'folder' in text :
+		text = text_process('folder',text)
+		answer = open_folder(text)
+		return answer
 	else :
 		open_browser(text)
 		return 'Done!'

@@ -1,4 +1,6 @@
 import webbrowser
+import os 
+
 
 def find_any_text(ltext ,text):
 	assert type(ltext) == type ([1,2])
@@ -17,6 +19,34 @@ def open_browser(link):
 
 	print webbrowser.open(link)
 
+
+def open_folder(text,home=None) :
+	if home is None :
+		home = os.getenv("HOME")
+		home += '/'
+	flag = False 
+	path = '.'
+
+	# dirlists = ['Desktop','Documents','Downloads']
+	dirlists = ['']
+	for hh in dirlists :
+		for dirname , dirnames , filename in os.walk(home+hh) :
+			for subd in dirnames :
+				if text.lower() in subd.lower() :
+					path = os.path.join(dirname,subd)
+					flag = True
+					break
+			if flag is True :
+				break
+		if flag is True :
+			break
+
+
+	if flag is False :
+		return 'Not Found.'
+	else :
+		os.system('open %s'%path)
+		return 'Done!'
 
 
 

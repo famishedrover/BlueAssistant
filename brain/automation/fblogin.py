@@ -5,23 +5,26 @@ from selenium.webdriver.common.keys import Keys
 import getpass
 
 def fblogin():
-	print 'Email:'
-	EMAIL_ID = raw_input()
-	PASSWORD = getpass.getpass()
+	try :
+		print 'Email:'
+		EMAIL_ID = raw_input()
+		PASSWORD = getpass.getpass()
 
 
-	driver = webdriver.Chrome()
-	# webpage = 'http://www.google.com'
-	facebook_webpage = 'https://www.facebook.com'
-	driver.get(facebook_webpage)
+		driver = webdriver.Chrome()
+		# webpage = 'http://www.google.com'
+		facebook_webpage = 'https://www.facebook.com'
+		driver.get(facebook_webpage)
 
 
-	email = driver.find_element_by_name('email')
-	password = driver.find_element_by_name('pass')
+		email = driver.find_element_by_name('email')
+		password = driver.find_element_by_name('pass')
 
-	email.clear()
-	email.send_keys(EMAIL_ID)
-	password.clear()
-	password.send_keys(PASSWORD)
-	password.send_keys(Keys.RETURN)
+		email.clear()
+		email.send_keys(EMAIL_ID)
+		password.clear()
+		password.send_keys(PASSWORD)
+		password.send_keys(Keys.RETURN)
+	except :
+		print 'Login Failed.'
 
