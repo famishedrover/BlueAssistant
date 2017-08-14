@@ -9,15 +9,29 @@ from brain.process_command import process_command
 # print name
 # name = get_name(name)
 # say('Hi '+name)
+
+import sys
+sys.stdout.write('\r\a')
+
+
 max_iter = 20
 cont = True
+beep = True
 say("Let's Begin!")
 while(cont is True or max_iter > 0) :
-	say('Say Something...')
 	max_iter -=1 
-	command = listen_blue()
+	command = listen_blue(talk=True,beep=beep)
 	print 'command:\t',command
-	
+
+	if 'beep' in command.lower() :
+		if 'enable' in command.lower() :
+			beep= True
+			say('Beep Enabled.')
+		elif 'disable' in command.lower() :
+			beep = False
+			say('Beep Disabled.')
+		continue 
+
 	if 'exit' in command.lower() or 'stop listening' in command.lower():
 		cont = False 
 		break

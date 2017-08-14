@@ -1,11 +1,17 @@
 import speech_recognition as sr
 from speech2text import say
+import pygame 
+
+
+
+pygame.init()
+pygame.mixer.music.load("./sounds/beep.mp3")
 
 r = sr.Recognizer()
 sample_rate = 48000
 chunk_size = 2048
 
-def listen_blue(talk=False) :
+def listen_blue(talk=False,beep=True) :
 	r = sr.Recognizer()
 	# mic_list = sr.Microphone.list_microphone_names()
 	with sr.Microphone( device_index = 0 ,sample_rate = sample_rate ,chunk_size = chunk_size)  as source :
@@ -13,7 +19,8 @@ def listen_blue(talk=False) :
 		print 'Speak Now !...'
 		if talk is True :
 			say('Speak Now')
-
+		if beep is True :
+			pygame.mixer.music.play()
 		audio = r.listen(source)
 		try :
 			text = r.recognize_google(audio)
