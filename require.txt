@@ -1,0 +1,7 @@
+REQUIREMENTS :
+
+1. Python 2.7
+2. pyaudio 				: 	brew install portaudio 
+							sudo pip install pyaudio
+3. SpeechRecognition 	: 	sudo pip install SpeechRecognition
+4. subprocess 			: 	subprocess.call(['say',text])
